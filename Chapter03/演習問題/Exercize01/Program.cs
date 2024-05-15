@@ -33,11 +33,14 @@ namespace Exercize01 {
         }
 
         private static void Exercise1_3(List<int> numbers) {
-
+            var nums = numbers.Where(n => 50 <= n);
+            foreach (var num in nums) { 
+                Console.WriteLine(num);
+            }
         }
 
         private static void Exercise1_4(List<int> numbers) {
-
+            numbers.Select(n => n * 2).ToList().ForEach(s => Console.WriteLine(s));
         }
     }
 }
