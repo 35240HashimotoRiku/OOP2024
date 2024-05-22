@@ -1,5 +1,9 @@
+using static System.Formats.Asn1.AsnWriter;
+
 namespace BallApp {
     public partial class Form1 : Form {
+
+        private int scoreCount = 0; //スコアカウント用
 
         //Listコレクション
         private List<Obj> balls = new List<Obj>();    //ボールインスタンス格納用
@@ -10,13 +14,15 @@ namespace BallApp {
         private PictureBox pbBar;
 
         //コンストラクタ
-        public Form1(PictureBox pbBar, PictureBox pbBall) {
+        public Form1() {
             InitializeComponent();
         }
 
         //フォームが最初にロードされるとき一度だけ実行される
         private void Form1_Load(object sender, EventArgs e) {
             this.Text = "BallApp SoccerBall:0  TennisBall:0";
+
+            score.Text = "スコア：" + this.scoreCount;
 
             bar = new Bar(340, 500);
             pbBar = new PictureBox();
@@ -31,8 +37,19 @@ namespace BallApp {
         private void timer1_Tick(object sender, EventArgs e) {
 
             for (int i = 0; i < balls.Count; i++) {
-                balls[i].Move(pbBar,pbBar);
-                pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);
+                int ret = balls[i].Move(pbBar, pbs[i]);
+                if (ret == 1) {
+                    //落下したボールインスタンスを削除する 
+                    balls.RemoveAt(i);
+                    pbs[i].Location = new Point(2000, 2000);
+                    pbs.RemoveAt(i);
+                } else if(ret == 2) {
+                    //バーに当たった
+                } else {
+                    //移動正常
+                    pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosX);
+
+                }
             }
         }
 
@@ -49,7 +66,6 @@ namespace BallApp {
                 ball = new TennisBall(e.X - 12, e.Y - 12);
                 pb.Size = new Size(25, 25);
             }
-
             pb.Image = ball.Image;
             pb.Location = new Point((int)ball.PosX, (int)ball.PosY);
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -64,7 +80,7 @@ namespace BallApp {
 
         private void Form1_KeyDown(object sender, KeyEventArgs e) {
             bar.Move(e.KeyCode);
-            pbBar.Location = new Point((int)bar.PosX,(int)bar.PosY);
+            pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY);
         }
     }
 }
