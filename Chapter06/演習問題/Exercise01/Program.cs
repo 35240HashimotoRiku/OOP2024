@@ -45,7 +45,10 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4(int[] numbers) {
-            throw new NotImplementedException();
+            var sortenumbers = numbers.OrderBy(n => n).Take(3).ToArray();
+            foreach (var num in sortenumbers) { 
+            Console.WriteLine(num);
+            }
         }
 
         private static void Exercise1_5(int[] numbers) {
