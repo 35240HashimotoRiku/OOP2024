@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,11 +10,12 @@ namespace SalesCounter {
         private IEnumerable<Sale> _sales;
 
         //コンストラクタ
-        public SalesCounter(string filePath) {
-            _sales = ReadSales(filePath);
+        public SalesCounter(string filePass) {
+            _sales = ReadSales(filePass);
         }
+
         //売り上げデータを読み込み、Saleオブジェクトのリストを返す
-       private static IEnumerable<Sale> ReadSales(string filePath) {
+        private static IEnumerable<Sale> ReadSales(string filePath) {
             List<Sale> sales = new List<Sale>();
             string[] lines = File.ReadAllLines(filePath);
             foreach (var line in lines) {
@@ -34,17 +34,13 @@ namespace SalesCounter {
         public IDictionary<string, int> GetPerStoreSales() {
             var dict = new Dictionary<string, int>();
             foreach (var sale in _sales) {
-                if (dict.ContainsKey(sale.ProductCategory)) {
-                    dict[sale.ProductCategory] += sale.Amount;
+                if (dict.ContainsKey(sale.ShopName)) {
+                    dict[sale.ShopName] += sale.Amount;
                 } else {
-                    dict[sale.ProductCategory] = sale.Amount;
+                    dict[sale.ShopName] = sale.Amount;
                 }
-
-
             }
             return dict;
         }
     }
 }
-
-

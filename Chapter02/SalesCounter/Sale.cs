@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SalesCounter
-{
-    public class Sale
-    {
+namespace SalesCounter {
+    public class Sale {
         //店舗名
         public string ShopName { get; set; }
         //商品カテゴリ
