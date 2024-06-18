@@ -11,6 +11,7 @@ namespace Test01 {
             var TotalBySubject = score.GetPerStudentScore();
             foreach (var obj in TotalBySubject) {
                 Console.WriteLine("{0} {1}", obj.Key, obj.Value);
+                //n
 
             }
         }
