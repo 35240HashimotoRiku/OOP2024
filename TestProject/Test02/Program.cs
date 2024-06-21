@@ -69,7 +69,7 @@ namespace Test02 {
         //　　　　出力結果【618】
         private static void Exercise01(List<int> numbers) {
             var sum = numbers.Sum();
-            Console.WriteLine(numbers);
+            Console.WriteLine(sum);
 
 
         }
@@ -77,14 +77,14 @@ namespace Test02 {
         //問題２　偶数の最大値を表示
         //　　　　出力結果【94】
         private static void Exercise02(List<int> numbers) {
-            var max = numbers.Max();
-            Console.WriteLine(numbers);
+            var max = numbers.Where(x=>x%2==0).Max();
+            Console.WriteLine(max);
 
         }
         //問題３　奇数のみを降順に並べて表示（遅延実行とする）
         //　　　　出力結果【91 87 53 35 31 17】
         private static void Exercise03(List<int> numbers) {
-            var count = count(numbers,n => numbers % 2 == 1);
+            var count = numbers.Where(numbers,n => numbers % 2 == 1);
             Console.WriteLine(count);
 
 
