@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -15,25 +16,17 @@ namespace Section01 {
             var month = int.Parse(Console.ReadLine());
             Console.Write("日：");
             var day = int.Parse(Console.ReadLine());
+
             var birthday = new DateTime(year, month, day);
-            DayOfWeek dayOfWeek = birthday.DayOfWeek;
-            if (dayOfWeek == DayOfWeek.Sunday) {
-                Console.WriteLine("あなたは日曜日に生まれました");
-            } else if (dayOfWeek == DayOfWeek.Monday) {
-                Console.WriteLine("あなたは月曜日に生まれました");
-            } else if (dayOfWeek == DayOfWeek.Tuesday) {
-                Console.WriteLine("あなたは火曜日に生まれました");
-            } else if (dayOfWeek == DayOfWeek.Wednesday) {
-                Console.WriteLine("あなたは水曜日に生まれました");
-            } else if (dayOfWeek == DayOfWeek.Thursday) {
-                Console.WriteLine("あなたは木曜日に生まれました");
-            } else if (dayOfWeek == DayOfWeek.Friday) {
-                Console.WriteLine("あなたは金曜日に生まれました");
-            } else if (dayOfWeek == DayOfWeek.Saturday) {
-                Console.WriteLine("あなたは土曜日に生まれました");
 
+            //あなたは平成○○年〇月〇日〇曜日に生まれました
+            var culture = new CultureInfo("ja-JP");
+            culture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            var str = birthday.ToString("ggyy年M月d日(dddd)", culture);
+            Console.WriteLine(str); 
 
-            }
+            //あなたは生まれてから今日で〇〇〇〇日目です
+
         }
     }
 }
