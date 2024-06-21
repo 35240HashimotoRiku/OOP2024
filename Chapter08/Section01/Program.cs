@@ -23,10 +23,12 @@ namespace Section01 {
             var culture = new CultureInfo("ja-JP");
             culture.DateTimeFormat.Calendar = new JapaneseCalendar();
             var str = birthday.ToString("ggyy年M月d日(dddd)", culture);
-            Console.WriteLine(str); 
+            Console.WriteLine(str);
 
             //あなたは生まれてから今日で〇〇〇〇日目です
-
+            var today = DateTime.Today;
+            TimeSpan diff = today.Date - birthday.Date;
+            Console.WriteLine("{0}日間", diff.Days);
         }
     }
 }
