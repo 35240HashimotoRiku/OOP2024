@@ -36,7 +36,7 @@
             rbInport = new RadioButton();
             rbSubaru = new RadioButton();
             rbHonda = new RadioButton();
-            rbNissasan = new RadioButton();
+            rbNissan = new RadioButton();
             rbToyota = new RadioButton();
             tbReport = new TextBox();
             btPicOpen = new Button();
@@ -122,11 +122,11 @@
             label5.TabIndex = 0;
             label5.Text = "画像";
             // 
-            // cbAuther
+            // cbAuthor
             // 
             cbAuthor.FormattingEnabled = true;
             cbAuthor.Location = new Point(91, 56);
-            cbAuthor.Name = "cbAuther";
+            cbAuthor.Name = "cbAuthor";
             cbAuthor.Size = new Size(186, 23);
             cbAuthor.TabIndex = 2;
             // 
@@ -136,7 +136,7 @@
             groupBox1.Controls.Add(rbInport);
             groupBox1.Controls.Add(rbSubaru);
             groupBox1.Controls.Add(rbHonda);
-            groupBox1.Controls.Add(rbNissasan);
+            groupBox1.Controls.Add(rbNissan);
             groupBox1.Controls.Add(rbToyota);
             groupBox1.Location = new Point(91, 82);
             groupBox1.Name = "groupBox1";
@@ -188,16 +188,16 @@
             rbHonda.Text = "ホンダ";
             rbHonda.UseVisualStyleBackColor = true;
             // 
-            // rbNissasan
+            // rbNissan
             // 
-            rbNissasan.AutoSize = true;
-            rbNissasan.Location = new Point(62, 15);
-            rbNissasan.Name = "rbNissasan";
-            rbNissasan.Size = new Size(49, 19);
-            rbNissasan.TabIndex = 0;
-            rbNissasan.TabStop = true;
-            rbNissasan.Text = "日産";
-            rbNissasan.UseVisualStyleBackColor = true;
+            rbNissan.AutoSize = true;
+            rbNissan.Location = new Point(62, 15);
+            rbNissan.Name = "rbNissan";
+            rbNissan.Size = new Size(49, 19);
+            rbNissan.TabIndex = 0;
+            rbNissan.TabStop = true;
+            rbNissan.Text = "日産";
+            rbNissan.UseVisualStyleBackColor = true;
             // 
             // rbToyota
             // 
@@ -266,6 +266,7 @@
             btModfyReport.TabIndex = 6;
             btModfyReport.Text = "修正";
             btModfyReport.UseVisualStyleBackColor = true;
+            btModfyReport.Click += btModfyReport_Click;
             // 
             // dgvCarReport
             // 
@@ -290,6 +291,7 @@
             btDeleteReport.TabIndex = 6;
             btDeleteReport.Text = "削除";
             btDeleteReport.UseVisualStyleBackColor = true;
+            btDeleteReport.Click += btDeleteReport_Click;
             // 
             // label6
             // 
@@ -363,6 +365,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "0";
+            Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).EndInit();
@@ -386,7 +389,7 @@
         private RadioButton rbInport;
         private RadioButton rbSubaru;
         private RadioButton rbHonda;
-        private RadioButton rbNissasan;
+        private RadioButton rbNissan;
         private RadioButton rbToyota;
         private TextBox tbReport;
         private Button btPicOpen;
