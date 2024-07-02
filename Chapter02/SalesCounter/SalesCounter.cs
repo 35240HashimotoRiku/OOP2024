@@ -21,9 +21,9 @@ namespace SalesCounter {
             foreach (var line in lines) {
                 string[] items = line.Split(',');
                 Sale sale = new Sale {
-                    ShopName = items[0],
-                    ProductCategory = items[1],
-                    Amount = int.Parse(items[2]),
+                    Name = items[0],
+                    subject = items[1],
+                    Score = int.Parse(items[2]),
                 };
                 sales.Add(sale);
             }
@@ -34,10 +34,10 @@ namespace SalesCounter {
         public IDictionary<string, int> GetPerStoreSales() {
             var dict = new Dictionary<string, int>();
             foreach (var sale in _sales) {
-                if (dict.ContainsKey(sale.ShopName)) {
-                    dict[sale.ShopName] += sale.Amount;
+                if (dict.ContainsKey(sale.Name)) {
+                    dict[sale.Name] += sale.Score;
                 } else {
-                    dict[sale.ShopName] = sale.Amount;
+                    dict[sale.Name] = sale.Score;
                 }
             }
             return dict;

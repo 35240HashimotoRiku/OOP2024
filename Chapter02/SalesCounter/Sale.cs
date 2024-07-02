@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace SalesCounter {
     public class Sale {
         //店舗名
-        public string ShopName { get; set; }
+        public string Name { get; set; }
         //商品カテゴリ
-        public string ProductCategory { get; set; }
+        public string subject { get; set; }
         //売上高
-        public int Amount { get; set; }
+        public int Score { get; set; }
     }
 }
