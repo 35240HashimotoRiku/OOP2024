@@ -51,9 +51,12 @@
             btReportSave = new Button();
             label7 = new Label();
             ofdPicFileOpen = new OpenFileDialog();
+            ssMessageArea = new StatusStrip();
+            tslbMessageArea = new ToolStripStatusLabel();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).BeginInit();
+            ssMessageArea.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -337,11 +340,27 @@
             // 
             ofdPicFileOpen.FileName = "openFileDialog1";
             // 
+            // ssMessageArea
+            // 
+            ssMessageArea.Items.AddRange(new ToolStripItem[] { tslbMessageArea });
+            ssMessageArea.Location = new Point(0, 464);
+            ssMessageArea.Name = "ssMessageArea";
+            ssMessageArea.Size = new Size(800, 22);
+            ssMessageArea.TabIndex = 9;
+            ssMessageArea.Text = "statusStrip1";
+            // 
+            // tslbMessageArea
+            // 
+            tslbMessageArea.Name = "tslbMessageArea";
+            tslbMessageArea.Size = new Size(118, 17);
+            tslbMessageArea.Text = "toolStripStatusLabel1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 475);
+            ClientSize = new Size(800, 486);
+            Controls.Add(ssMessageArea);
             Controls.Add(dgvCarReport);
             Controls.Add(pbPicture);
             Controls.Add(btPicDelete);
@@ -370,6 +389,8 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pbPicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvCarReport).EndInit();
+            ssMessageArea.ResumeLayout(false);
+            ssMessageArea.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -404,5 +425,7 @@
         private Button btReportSave;
         private Label label7;
         private OpenFileDialog ofdPicFileOpen;
+        private StatusStrip ssMessageArea;
+        private ToolStripStatusLabel tslbMessageArea;
     }
 }

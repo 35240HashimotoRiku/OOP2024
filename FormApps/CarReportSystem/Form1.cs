@@ -10,13 +10,16 @@ namespace CarReportSystem {
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
         //コンストラクタ
-
         public Form1() {
             InitializeComponent();
             dgvCarReport.DataSource = listCarReports;
         }
 
         private void btAddReprt_Click(object sender, EventArgs e) {
+            if (cbAuthor.Text == "" || cbCarName.Text == "") {
+                tslbMessageArea.Text = "記録者または車名が未入力です";
+                return;
+            }
             CarReport carReport = new CarReport() {
                 Date = dtpDate.Value,
                 Maker = GetRadioBottunMaker(),
@@ -24,12 +27,24 @@ namespace CarReportSystem {
                 CarName = cbCarName.Text,
                 Report = tbReport.Text,
                 Picture = pbPicture.Image,
-
-
             };
             listCarReports.Add(carReport);
-
+            setCbAuthor(carReport.Author);
+            setcbCarName(carReport.CarName);
         }
+
+            //記録者の履歴をコンボボックスへ登録（重複なし）
+            private void setCbAuthor(string auther) { 
+               if(!cbAuthor.Items.Contains(auther)) 
+               cbAuthor.Items.Add(auther);
+            }
+            //車名の履歴をコンボボックスへ登録（重複なし）
+            private void setcbCarName(string carName) {
+                if (!cbAuthor.Items.Contains(carName))
+                    cbAuthor.Items.Add(carName);
+            }
+
+        
         private CarReport.MakerGroup GetRadioBottunMaker() {
             if (rbToyota.Checked)
                 return CarReport.MakerGroup.トヨタ;
@@ -105,13 +120,21 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReport.Columns["Picture"].Visible = false;//画像表示しない
         }
-
+        //削除ボタン
         private void btDeleteReport_Click(object sender, EventArgs e) {
+            if (dgvCarReport.CurrentRow==null) {
+                tslbMessageArea.Text = "データがありません";
+                return;
+            }
             listCarReports.RemoveAt(dgvCarReport.CurrentRow.Index);
-
+            
         }
-
+        //修正ボタン
         private void btModfyReport_Click(object sender, EventArgs e) {
+            if (dgvCarReport.CurrentRow == null) {
+                tslbMessageArea.Text = "データがありません";
+                return;
+            }
             listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
             listCarReports[dgvCarReport.CurrentRow.Index].Maker = GetRadioBottunMaker();
             listCarReports[dgvCarReport.CurrentRow.Index].Author = cbAuthor.Text;
