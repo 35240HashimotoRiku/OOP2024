@@ -1,5 +1,7 @@
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using System.Drawing.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
@@ -110,10 +112,18 @@ namespace CarReportSystem {
         }
 
         private void btModfyReport_Click(object sender, EventArgs e) {
-            
+            listCarReports[dgvCarReport.CurrentRow.Index].Date = dtpDate.Value;
+            listCarReports[dgvCarReport.CurrentRow.Index].Maker = GetRadioBottunMaker();
+            listCarReports[dgvCarReport.CurrentRow.Index].Author = cbAuthor.Text;
+            listCarReports[dgvCarReport.CurrentRow.Index].CarName = cbCarName.Text;
+            listCarReports[dgvCarReport.CurrentRow.Index].Report = tbReport.Text;
+            listCarReports[dgvCarReport.CurrentRow.Index].Picture = pbPicture.Image;
+
 
             dgvCarReport.Refresh();//データグリッドビューの更新
         }
+
+
     }
 }
 
