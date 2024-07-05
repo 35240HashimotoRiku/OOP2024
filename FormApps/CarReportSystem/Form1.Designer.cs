@@ -94,6 +94,7 @@
             cbCarName.Name = "cbCarName";
             cbCarName.Size = new Size(186, 23);
             cbCarName.TabIndex = 2;
+            cbCarName.SelectedIndexChanged += cbCarName_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -132,6 +133,7 @@
             cbAuthor.Name = "cbAuthor";
             cbAuthor.Size = new Size(186, 23);
             cbAuthor.TabIndex = 2;
+            cbAuthor.SelectedIndexChanged += cbAuthor_SelectedIndexChanged;
             // 
             // groupBox1
             // 
@@ -275,12 +277,14 @@
             // 
             dgvCarReport.AllowUserToAddRows = false;
             dgvCarReport.AllowUserToDeleteRows = false;
+            dgvCarReport.AllowUserToResizeRows = false;
             dgvCarReport.BackgroundColor = SystemColors.Window;
             dgvCarReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCarReport.Location = new Point(97, 301);
             dgvCarReport.MultiSelect = false;
             dgvCarReport.Name = "dgvCarReport";
             dgvCarReport.ReadOnly = true;
+            dgvCarReport.RowHeadersVisible = false;
             dgvCarReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCarReport.Size = new Size(625, 150);
             dgvCarReport.TabIndex = 8;
