@@ -266,11 +266,9 @@ namespace CarReportSystem {
         }
         
         private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
-            DialogResult result = MessageBox.Show
-                                            ("実行します。よろしいですか？", "確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
-            if (result == DialogResult.OK) {
+            if (MessageBox.Show("実行します。よろしいですか？", "確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1) == DialogResult.OK) {
                 Application.Exit();
-            }
+             }
            
         }
     }
