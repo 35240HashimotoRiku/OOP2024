@@ -187,10 +187,7 @@ namespace CarReportSystem {
             tslbMessage.Text = "";
         }
 
-        //•Û‘¶ƒ{ƒ^ƒ“
-        private void btReportSave_Click(object sender, EventArgs e) {
-            ReportSaveFile();
-        }
+       
 
         private void ReportSaveFile() {
             if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
@@ -218,9 +215,7 @@ namespace CarReportSystem {
             }
         }
         //
-        private void btReportOpen_Click(object sender, EventArgs e) {
-            ReportOpenFile();
-        }
+     
 
         private void ReportOpenFile() {
             if (ofdReportFileOpen.ShowDialog() == DialogResult.OK) {
