@@ -14,7 +14,7 @@ namespace CarReportSystem {
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
         //設定クラスのインスタンス作成
-        Settings settings = Settings.getInstace();
+        Settings settings = Settings.getInstance();
 
         //コンストラクタ
         public Form1() {
@@ -143,7 +143,7 @@ namespace CarReportSystem {
                 try {
                     using (var reader = XmlReader.Create("settings.xml")) {
                         var serializar = new XmlSerializer(typeof(Settings));
-                        var settings = serializar.Deserialize(reader) as Settings;
+                        settings = serializar.Deserialize(reader) as Settings;
                         BackColor = Color.FromArgb(settings.MainFormColor);
                         settings.MainFormColor = BackColor.ToArgb();
                     }
@@ -263,7 +263,7 @@ namespace CarReportSystem {
 
                     }
                 }
-                catch (Exception ex) {
+                catch (Exception) {
                     tslbMessage.Text = "ファイル形式が違います";
 
                     throw;
@@ -317,6 +317,13 @@ namespace CarReportSystem {
 
             }
         }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e) {
+
+        }
+        private void このアプリについてToolStripMenuItem_Click(object sender, EventArgs e) {
+            var fmversion = new fmVersion();
+            fmversion.ShowDialog();        }
     }
 }
 
