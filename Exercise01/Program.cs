@@ -33,6 +33,7 @@ namespace Exercise01 {
             }
         }
 
+
         private static void Exercise1_2(string file) {
             var xdoc = XDocument.Load(file);
             var sports = xdoc.Root.Elements()
@@ -47,6 +48,7 @@ namespace Exercise01 {
 
         }
 
+
         private static void Exercise1_3(string file) {
 
               //解答例①
@@ -58,7 +60,19 @@ namespace Exercise01 {
             Console.WriteLine($"{sport.Element("name").Value}");
         }
 
+
         private static void Exercise1_4(string file, string newfile) {
+            var element = new XElement("ballsport",
+                 new XElement("name", "サッカー", new XAttribute("kanji", "蹴球")),
+                 new XElement("teammembers", "11"),
+                 new XElement("firstplayed", "1863")
+               );
+
+            var xdoc = XDocument.Load("file");
+            xdoc.Root.Add(element);
+
+            //保存
+            xdoc.Save("newfile");
 
         }
     }
