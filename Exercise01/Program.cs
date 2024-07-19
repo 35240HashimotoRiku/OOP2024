@@ -51,7 +51,6 @@ namespace Exercise01 {
 
         private static void Exercise1_3(string file) {
 
-              //解答例①
               var xdoc = XDocument.Load(file);
               var sport = xdoc.Root.Elements()
                            .OrderByDescending(x=> x.Element("teammembers").Value)
@@ -62,17 +61,41 @@ namespace Exercise01 {
 
 
         private static void Exercise1_4(string file, string newfile) {
-            var element = new XElement("ballsport",
-                 new XElement("name", "サッカー", new XAttribute("kanji", "蹴球")),
-                 new XElement("teammembers", "11"),
-                 new XElement("firstplayed", "1863")
-               );
+            List<XElement> xElements = new List<XElement>();
 
-            var xdoc = XDocument.Load("file");
-            xdoc.Root.Add(element);
+            var xdoc = XDocument.Load(file);
 
-            //保存
-            xdoc.Save("newfile");
+            string name,kanji,teammembers,firstplayed;
+            int nextFlag;
+            while (true) {
+                //入力処理
+                Console.WriteLine("名称：");
+                name = Console.ReadLine();
+                Console.WriteLine("漢字：");
+                kanji = Console.ReadLine();
+                Console.WriteLine("人数：");
+                teammembers = Console.ReadLine();
+                Console.WriteLine("起源：");
+                firstplayed = Console.ReadLine();
+                //1件分の要素作成
+                var element = new XElement("ballsport",
+                    new XElement("name", name, new XAttribute("kanji", kanji)),
+                    new XElement("teammembers", teammembers),
+                    new XElement("firstplayed", firstplayed)
+                    );
+                xElements.Add(element);//リストへ要素を追加
+
+                Console.WriteLine();//改行
+                Console.WriteLine("追加【1】保存【2】");
+                Console.WriteLine(">");
+                nextFlag = int.Parse(Console.ReadLine());
+                if (nextFlag > 2) break;//無限ループを抜ける
+                Console.WriteLine();//改行
+            }
+            xdoc.Root.Add(xElements);
+      
+           //保存
+          xdoc.Save("newfile");
 
         }
     }
