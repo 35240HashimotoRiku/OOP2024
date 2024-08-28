@@ -1,8 +1,14 @@
 ﻿using Section01;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -33,7 +39,7 @@ namespace Exercise01 {
                 Name = "次郎",
                 HireDate = new DateTime(2004, 12, 1)
             };
-            using(var writer = XmlWriter.Create(outfile)) {
+            using (var writer = XmlWriter.Create(outfile)) {
                 var serializer = new XmlSerializer(emp.GetType());
                 serializer.Serialize(writer, emp);
             }
@@ -52,13 +58,60 @@ namespace Exercise01 {
                 HireDate = new DateTime(2004, 12, 1)
                 },
             };
-        }
-            
 
-        private static void Exercise1_3(string v) {
+            using (var writer = XmlWriter.Create(outfile)) {
+                var serializer = new DataContractSerializer(emps.GetType());
+                serializer.WriteObject(writer, emps);
+
+            }
         }
 
-        private static void Exercise1_4(string v) {
+        private static void Exercise1_3(string file) {
+            using (var reader = XmlReader.Create(file)) {
+                var serializer = new DataContractSerializer(typeof(Employee[]));
+                var emps = serializer.ReadObject(reader) as Employee[];
+
+
+                foreach (var emp in emps) {
+                    Console.WriteLine("{0}{1}{2}", emp.Id, emp.Name, emp.HireDate);
+                }
+            }
         }
+
+        private static void Exercise1_4(string file) {
+            var emps = new Employee[] {
+                new Employee {
+                    Id = 123,
+                    Name = "太郎",
+                    HireDate = DateTime.Now
+                },
+                new Employee {
+                Id = 456,
+                Name = "次郎",
+                HireDate = new DateTime(2004, 12, 1)
+                },
+            };
+
+            using (var stream = new FileStream(file, FileMode.Create, FileAccess.Write)) {
+
+                var options = new JsonSerializerOptions {
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                    WriteIndented = true,
+                };
+
+                string jsonString = JsonSerializer.Serialize(emps, options);
+                Console.WriteLine($"{jsonString}");
+
+                File.WriteAllText(file,jsonString );
+
+                //serializer.WriteObject(stream.novels);
+                JsonSerializer.Serialize(emps, options );
+
+
+            }
+        }
+
     }
 }
+
+
