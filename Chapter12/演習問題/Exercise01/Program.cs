@@ -95,16 +95,12 @@ namespace Exercise01 {
             using (var stream = new FileStream(file, FileMode.Create, FileAccess.Write)) {
 
                 var options = new JsonSerializerOptions {
+                    PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseUpper,//キー名のカスタマイズ
                     Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
                     WriteIndented = true,
                 };
 
-                string jsonString = JsonSerializer.Serialize(emps, options);
-                Console.WriteLine($"{jsonString}");
-
-                File.WriteAllText(file,jsonString );
-
-                //serializer.WriteObject(stream.novels);
+           
                 JsonSerializer.Serialize(emps, options );
 
 
