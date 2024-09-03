@@ -23,7 +23,7 @@ namespace RssReader {
 
                 var xelements = xdoc.Root.Descendants("item");
                 foreach (var xelement in xelements) {
-                    var novelists = xelement.Element("title");
+                    var novelists = xelement.Element("title").Value;
                         lbRssTitle.Items.Add(novelists);
                 }
             }
