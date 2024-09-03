@@ -115,6 +115,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "演習問題", "演習問�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise01", "\\172.16.42.1\学生\2024_情報システム\Chapter12\演習問題\Exercise01\Exercise01.csproj", "{8D661F5D-1314-44D2-9986-05C37FF5012B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssReader", "FormApps\RssReader\RssReader.csproj", "{1ED04158-ED0E-4A5D-8051-7FD10C072A4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -261,6 +263,10 @@ Global
 		{8D661F5D-1314-44D2-9986-05C37FF5012B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D661F5D-1314-44D2-9986-05C37FF5012B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D661F5D-1314-44D2-9986-05C37FF5012B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED04158-ED0E-4A5D-8051-7FD10C072A4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED04158-ED0E-4A5D-8051-7FD10C072A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED04158-ED0E-4A5D-8051-7FD10C072A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED04158-ED0E-4A5D-8051-7FD10C072A4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -310,6 +316,7 @@ Global
 		{44E87042-8756-4DC5-94EE-3487497F5FE0} = {0EFE358C-F297-4FF0-A3E2-4FADCBAC87FB}
 		{51354ECA-951D-40C9-A8DB-D48421E63EFD} = {0EFE358C-F297-4FF0-A3E2-4FADCBAC87FB}
 		{8D661F5D-1314-44D2-9986-05C37FF5012B} = {51354ECA-951D-40C9-A8DB-D48421E63EFD}
+		{1ED04158-ED0E-4A5D-8051-7FD10C072A4C} = {6867DF0E-04C2-46D9-A1DA-80EEC122362A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6E5C7EC-E364-498C-9DA3-D409B35E1CEC}
