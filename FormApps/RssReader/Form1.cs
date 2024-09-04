@@ -11,7 +11,10 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace RssReader {
-    public partial class Form1 : Form {
+  
+        public partial class Form1 : Form {
+        List<ItemData> items;
+
         public Form1() {
             InitializeComponent();
         }
@@ -21,12 +24,25 @@ namespace RssReader {
                 var url = wc.OpenRead(tbRssUrl.Text);
                 var xdoc = XDocument.Load(url);
 
-                var xelements = xdoc.Root.Descendants("item");
-                foreach (var xelement in xelements) {
-                    var novelists = xelement.Element("title").Value;
-                        lbRssTitle.Items.Add(novelists);
+                items = xdoc.Root.Descendants("item")
+                            .Select(item => new ItemData {
+                                Title = item.Element("title").Value,
+                                Link = item.Element("link").Value,
+                            }).ToList();
+
+                foreach(var item in items) {
+                    lbRssTitle.Items.Add(item.Title);
                 }
             }
         }
+
+        private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
+            webBrowser1.Navigate(items[lbRssTitle.SelectedIndex].Link);
+        }
+    }
+    //データ格納用のクラス
+    public class ItemData {
+        public string Title { get; set; }
+        public string Link { get; set; }
     }
 }
