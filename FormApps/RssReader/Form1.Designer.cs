@@ -26,7 +26,15 @@
             this.tbRssUrl = new System.Windows.Forms.TextBox();
             this.btGet = new System.Windows.Forms.Button();
             this.lbRssTitle = new System.Windows.Forms.ListBox();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.KokunaiNews = new System.Windows.Forms.RadioButton();
+            this.KokusaiNews = new System.Windows.Forms.RadioButton();
+            this.KeizaiNews = new System.Windows.Forms.RadioButton();
+            this.EntameNews = new System.Windows.Forms.RadioButton();
+            this.SportsNews = new System.Windows.Forms.RadioButton();
+            this.ItNews = new System.Windows.Forms.RadioButton();
+            this.KagakuNews = new System.Windows.Forms.RadioButton();
+            this.TikiNews = new System.Windows.Forms.RadioButton();
+            this.MainNews = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // tbRssUrl
@@ -54,23 +62,129 @@
             this.lbRssTitle.Name = "lbRssTitle";
             this.lbRssTitle.Size = new System.Drawing.Size(339, 568);
             this.lbRssTitle.TabIndex = 2;
-            this.lbRssTitle.SelectedIndexChanged += new System.EventHandler(this.lbRssTitle_SelectedIndexChanged);
             // 
-            // webBrowser1
+            // KokunaiNews
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(357, 25);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.Size = new System.Drawing.Size(457, 568);
-            this.webBrowser1.TabIndex = 3;
+            this.KokunaiNews.AutoSize = true;
+            this.KokunaiNews.Location = new System.Drawing.Point(524, 38);
+            this.KokunaiNews.Name = "KokunaiNews";
+            this.KokunaiNews.Size = new System.Drawing.Size(83, 16);
+            this.KokunaiNews.TabIndex = 3;
+            this.KokunaiNews.TabStop = true;
+            this.KokunaiNews.Text = "国内ニュース";
+            this.KokunaiNews.UseVisualStyleBackColor = true;
+            this.KokunaiNews.CheckedChanged += new System.EventHandler(this.KokunaiNews_CheckedChanged);
+            // 
+            // KokusaiNews
+            // 
+            this.KokusaiNews.AutoSize = true;
+            this.KokusaiNews.Location = new System.Drawing.Point(631, 38);
+            this.KokusaiNews.Name = "KokusaiNews";
+            this.KokusaiNews.Size = new System.Drawing.Size(83, 16);
+            this.KokusaiNews.TabIndex = 4;
+            this.KokusaiNews.TabStop = true;
+            this.KokusaiNews.Text = "国際ニュース";
+            this.KokusaiNews.UseVisualStyleBackColor = true;
+            this.KokusaiNews.CheckedChanged += new System.EventHandler(this.KokusaiNews_CheckedChanged);
+            // 
+            // KeizaiNews
+            // 
+            this.KeizaiNews.AutoSize = true;
+            this.KeizaiNews.Location = new System.Drawing.Point(411, 79);
+            this.KeizaiNews.Name = "KeizaiNews";
+            this.KeizaiNews.Size = new System.Drawing.Size(83, 16);
+            this.KeizaiNews.TabIndex = 5;
+            this.KeizaiNews.TabStop = true;
+            this.KeizaiNews.Text = "経済ニュース";
+            this.KeizaiNews.UseVisualStyleBackColor = true;
+            this.KeizaiNews.CheckedChanged += new System.EventHandler(this.KeizaiNews_CheckedChanged);
+            // 
+            // EntameNews
+            // 
+            this.EntameNews.AutoSize = true;
+            this.EntameNews.Location = new System.Drawing.Point(524, 79);
+            this.EntameNews.Name = "EntameNews";
+            this.EntameNews.Size = new System.Drawing.Size(93, 16);
+            this.EntameNews.TabIndex = 6;
+            this.EntameNews.TabStop = true;
+            this.EntameNews.Text = "エンタメニュース";
+            this.EntameNews.UseVisualStyleBackColor = true;
+            this.EntameNews.CheckedChanged += new System.EventHandler(this.EntameNews_CheckedChanged);
+            // 
+            // SportsNews
+            // 
+            this.SportsNews.AutoSize = true;
+            this.SportsNews.Location = new System.Drawing.Point(631, 79);
+            this.SportsNews.Name = "SportsNews";
+            this.SportsNews.Size = new System.Drawing.Size(97, 16);
+            this.SportsNews.TabIndex = 7;
+            this.SportsNews.TabStop = true;
+            this.SportsNews.Text = "スポーツニュース";
+            this.SportsNews.UseVisualStyleBackColor = true;
+            this.SportsNews.CheckedChanged += new System.EventHandler(this.SportsNews_CheckedChanged);
+            // 
+            // ItNews
+            // 
+            this.ItNews.AutoSize = true;
+            this.ItNews.Location = new System.Drawing.Point(411, 129);
+            this.ItNews.Name = "ItNews";
+            this.ItNews.Size = new System.Drawing.Size(69, 16);
+            this.ItNews.TabIndex = 8;
+            this.ItNews.TabStop = true;
+            this.ItNews.Text = "ITニュース";
+            this.ItNews.UseVisualStyleBackColor = true;
+            this.ItNews.CheckedChanged += new System.EventHandler(this.ItNews_CheckedChanged);
+            // 
+            // KagakuNews
+            // 
+            this.KagakuNews.AutoSize = true;
+            this.KagakuNews.Location = new System.Drawing.Point(524, 129);
+            this.KagakuNews.Name = "KagakuNews";
+            this.KagakuNews.Size = new System.Drawing.Size(83, 16);
+            this.KagakuNews.TabIndex = 9;
+            this.KagakuNews.TabStop = true;
+            this.KagakuNews.Text = "科学ニュース";
+            this.KagakuNews.UseVisualStyleBackColor = true;
+            this.KagakuNews.CheckedChanged += new System.EventHandler(this.KagakuNews_CheckedChanged);
+            // 
+            // TikiNews
+            // 
+            this.TikiNews.AutoSize = true;
+            this.TikiNews.Location = new System.Drawing.Point(631, 129);
+            this.TikiNews.Name = "TikiNews";
+            this.TikiNews.Size = new System.Drawing.Size(83, 16);
+            this.TikiNews.TabIndex = 10;
+            this.TikiNews.TabStop = true;
+            this.TikiNews.Text = "地域ニュース";
+            this.TikiNews.UseVisualStyleBackColor = true;
+            this.TikiNews.CheckedChanged += new System.EventHandler(this.TikiNews_CheckedChanged);
+            // 
+            // MainNews
+            // 
+            this.MainNews.AutoSize = true;
+            this.MainNews.Location = new System.Drawing.Point(411, 38);
+            this.MainNews.Name = "MainNews";
+            this.MainNews.Size = new System.Drawing.Size(83, 16);
+            this.MainNews.TabIndex = 11;
+            this.MainNews.TabStop = true;
+            this.MainNews.Text = "主要ニュース";
+            this.MainNews.UseVisualStyleBackColor = true;
+            this.MainNews.CheckedChanged += new System.EventHandler(this.MainNews_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(826, 611);
-            this.Controls.Add(this.webBrowser1);
+            this.Controls.Add(this.MainNews);
+            this.Controls.Add(this.TikiNews);
+            this.Controls.Add(this.KagakuNews);
+            this.Controls.Add(this.ItNews);
+            this.Controls.Add(this.SportsNews);
+            this.Controls.Add(this.EntameNews);
+            this.Controls.Add(this.KeizaiNews);
+            this.Controls.Add(this.KokusaiNews);
+            this.Controls.Add(this.KokunaiNews);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
             this.Controls.Add(this.tbRssUrl);
@@ -86,7 +200,15 @@
         private System.Windows.Forms.TextBox tbRssUrl;
         private System.Windows.Forms.Button btGet;
         private System.Windows.Forms.ListBox lbRssTitle;
-        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.RadioButton KokunaiNews;
+        private System.Windows.Forms.RadioButton KokusaiNews;
+        private System.Windows.Forms.RadioButton KeizaiNews;
+        private System.Windows.Forms.RadioButton EntameNews;
+        private System.Windows.Forms.RadioButton SportsNews;
+        private System.Windows.Forms.RadioButton ItNews;
+        private System.Windows.Forms.RadioButton KagakuNews;
+        private System.Windows.Forms.RadioButton TikiNews;
+        private System.Windows.Forms.RadioButton MainNews;
     }
 }
 
