@@ -20,6 +20,14 @@ namespace RssReader {
         }
 
         private void btGet_Click(object sender, EventArgs e) {
+
+            if (string.IsNullOrWhiteSpace(tbRssUrl.Text) || !Uri.IsWellFormedUriString(tbRssUrl.Text, UriKind.Absolute)) {
+                MessageBox.Show("正しいURLを入力してください。", "エラー",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }//エラーメッセージの表示
+
+
             using (var wc = new WebClient()) {
                 var url = wc.OpenRead(tbRssUrl.Text);
                 var xdoc = XDocument.Load(url);
@@ -29,6 +37,8 @@ namespace RssReader {
                                 Title = item.Element("title").Value,
                                 Link = item.Element("link").Value,
                             }).ToList();
+
+                lbRssTitle.Items.Clear();//リストボックス削除
 
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
@@ -51,6 +61,8 @@ namespace RssReader {
                                 Link = item.Element("link").Value,
                             }).ToList();
 
+                lbRssTitle.Items.Clear();//リストボックス削除
+
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
                 }
@@ -67,6 +79,8 @@ namespace RssReader {
                                 Title = item.Element("title").Value,
                                 Link = item.Element("link").Value,
                             }).ToList();
+
+                lbRssTitle.Items.Clear();//リストボックス削除
 
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
@@ -85,6 +99,8 @@ namespace RssReader {
                                 Link = item.Element("link").Value,
                             }).ToList();
 
+                lbRssTitle.Items.Clear();//リストボックス削除
+
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
                 }
@@ -93,7 +109,7 @@ namespace RssReader {
 
         private void KeizaiNews_CheckedChanged(object sender, EventArgs e) {
             using (var wc = new WebClient()) {
-                var url = wc.OpenRead("https://news.yahoo.co.jp/rss/topics/world.xml");//経済ニュース
+                var url = wc.OpenRead("https://news.yahoo.co.jp/rss/topics/business.xml");//経済ニュース
                 var xdoc = XDocument.Load(url);
 
                 items = xdoc.Root.Descendants("item")
@@ -101,6 +117,8 @@ namespace RssReader {
                                 Title = item.Element("title").Value,
                                 Link = item.Element("link").Value,
                             }).ToList();
+
+                lbRssTitle.Items.Clear();//リストボックス削除
 
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
@@ -119,6 +137,8 @@ namespace RssReader {
                                 Link = item.Element("link").Value,
                             }).ToList();
 
+                lbRssTitle.Items.Clear();//リストボックス削除
+
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
                 }
@@ -135,6 +155,8 @@ namespace RssReader {
                                 Title = item.Element("title").Value,
                                 Link = item.Element("link").Value,
                             }).ToList();
+
+                lbRssTitle.Items.Clear();//リストボックス削除
 
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
@@ -153,6 +175,8 @@ namespace RssReader {
                                 Link = item.Element("link").Value,
                             }).ToList();
 
+                lbRssTitle.Items.Clear();//リストボックス削除
+
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
                 }
@@ -170,6 +194,8 @@ namespace RssReader {
                                 Link = item.Element("link").Value,
                             }).ToList();
 
+                lbRssTitle.Items.Clear();//リストボックス削除
+
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
                 }
@@ -186,6 +212,8 @@ namespace RssReader {
                                 Title = item.Element("title").Value,
                                 Link = item.Element("link").Value,
                             }).ToList();
+
+                lbRssTitle.Items.Clear();//リストボックス削除
 
                 foreach (var item in items) {
                     lbRssTitle.Items.Add(item.Title);
