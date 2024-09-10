@@ -23,7 +23,6 @@
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
-            this.tbRssUrl = new System.Windows.Forms.TextBox();
             this.btGet = new System.Windows.Forms.Button();
             this.lbRssTitle = new System.Windows.Forms.ListBox();
             this.KokunaiNews = new System.Windows.Forms.RadioButton();
@@ -36,15 +35,12 @@
             this.TikiNews = new System.Windows.Forms.RadioButton();
             this.MainNews = new System.Windows.Forms.RadioButton();
             this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.FavoriteBt = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.okiniiri = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tbRssUrl
-            // 
-            this.tbRssUrl.Location = new System.Drawing.Point(0, 0);
-            this.tbRssUrl.Name = "tbRssUrl";
-            this.tbRssUrl.Size = new System.Drawing.Size(652, 19);
-            this.tbRssUrl.TabIndex = 0;
             // 
             // btGet
             // 
@@ -60,15 +56,16 @@
             // 
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 12;
-            this.lbRssTitle.Location = new System.Drawing.Point(12, 25);
+            this.lbRssTitle.Location = new System.Drawing.Point(12, 181);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(339, 592);
+            this.lbRssTitle.Size = new System.Drawing.Size(339, 436);
             this.lbRssTitle.TabIndex = 2;
+            this.lbRssTitle.SelectedIndexChanged += new System.EventHandler(this.lbRssTitle_SelectedIndexChanged_1);
             // 
             // KokunaiNews
             // 
             this.KokunaiNews.AutoSize = true;
-            this.KokunaiNews.Location = new System.Drawing.Point(524, 38);
+            this.KokunaiNews.Location = new System.Drawing.Point(686, 38);
             this.KokunaiNews.Name = "KokunaiNews";
             this.KokunaiNews.Size = new System.Drawing.Size(83, 16);
             this.KokunaiNews.TabIndex = 3;
@@ -80,7 +77,7 @@
             // KokusaiNews
             // 
             this.KokusaiNews.AutoSize = true;
-            this.KokusaiNews.Location = new System.Drawing.Point(631, 38);
+            this.KokusaiNews.Location = new System.Drawing.Point(814, 38);
             this.KokusaiNews.Name = "KokusaiNews";
             this.KokusaiNews.Size = new System.Drawing.Size(83, 16);
             this.KokusaiNews.TabIndex = 4;
@@ -92,7 +89,7 @@
             // KeizaiNews
             // 
             this.KeizaiNews.AutoSize = true;
-            this.KeizaiNews.Location = new System.Drawing.Point(411, 79);
+            this.KeizaiNews.Location = new System.Drawing.Point(569, 79);
             this.KeizaiNews.Name = "KeizaiNews";
             this.KeizaiNews.Size = new System.Drawing.Size(83, 16);
             this.KeizaiNews.TabIndex = 5;
@@ -104,7 +101,7 @@
             // EntameNews
             // 
             this.EntameNews.AutoSize = true;
-            this.EntameNews.Location = new System.Drawing.Point(524, 79);
+            this.EntameNews.Location = new System.Drawing.Point(686, 79);
             this.EntameNews.Name = "EntameNews";
             this.EntameNews.Size = new System.Drawing.Size(93, 16);
             this.EntameNews.TabIndex = 6;
@@ -116,7 +113,7 @@
             // SportsNews
             // 
             this.SportsNews.AutoSize = true;
-            this.SportsNews.Location = new System.Drawing.Point(631, 79);
+            this.SportsNews.Location = new System.Drawing.Point(814, 79);
             this.SportsNews.Name = "SportsNews";
             this.SportsNews.Size = new System.Drawing.Size(97, 16);
             this.SportsNews.TabIndex = 7;
@@ -128,7 +125,7 @@
             // ItNews
             // 
             this.ItNews.AutoSize = true;
-            this.ItNews.Location = new System.Drawing.Point(411, 129);
+            this.ItNews.Location = new System.Drawing.Point(569, 129);
             this.ItNews.Name = "ItNews";
             this.ItNews.Size = new System.Drawing.Size(69, 16);
             this.ItNews.TabIndex = 8;
@@ -140,7 +137,7 @@
             // KagakuNews
             // 
             this.KagakuNews.AutoSize = true;
-            this.KagakuNews.Location = new System.Drawing.Point(524, 129);
+            this.KagakuNews.Location = new System.Drawing.Point(686, 129);
             this.KagakuNews.Name = "KagakuNews";
             this.KagakuNews.Size = new System.Drawing.Size(83, 16);
             this.KagakuNews.TabIndex = 9;
@@ -152,7 +149,7 @@
             // TikiNews
             // 
             this.TikiNews.AutoSize = true;
-            this.TikiNews.Location = new System.Drawing.Point(631, 129);
+            this.TikiNews.Location = new System.Drawing.Point(814, 129);
             this.TikiNews.Name = "TikiNews";
             this.TikiNews.Size = new System.Drawing.Size(83, 16);
             this.TikiNews.TabIndex = 10;
@@ -164,7 +161,7 @@
             // MainNews
             // 
             this.MainNews.AutoSize = true;
-            this.MainNews.Location = new System.Drawing.Point(411, 38);
+            this.MainNews.Location = new System.Drawing.Point(569, 35);
             this.MainNews.Name = "MainNews";
             this.MainNews.Size = new System.Drawing.Size(83, 16);
             this.MainNews.TabIndex = 11;
@@ -184,11 +181,50 @@
             this.webView21.TabIndex = 12;
             this.webView21.ZoomFactor = 1D;
             // 
+            // FavoriteBt
+            // 
+            this.FavoriteBt.Location = new System.Drawing.Point(458, 40);
+            this.FavoriteBt.Name = "FavoriteBt";
+            this.FavoriteBt.Size = new System.Drawing.Size(75, 23);
+            this.FavoriteBt.TabIndex = 14;
+            this.FavoriteBt.Text = "お気に入り";
+            this.FavoriteBt.UseVisualStyleBackColor = true;
+            this.FavoriteBt.Click += new System.EventHandler(this.FavoriteBt_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(109, 42);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(343, 19);
+            this.textBox1.TabIndex = 15;
+            // 
+            // okiniiri
+            // 
+            this.okiniiri.AutoSize = true;
+            this.okiniiri.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.okiniiri.Location = new System.Drawing.Point(9, 44);
+            this.okiniiri.Name = "okiniiri";
+            this.okiniiri.Size = new System.Drawing.Size(91, 13);
+            this.okiniiri.TabIndex = 18;
+            this.okiniiri.Text = "お気に入り追加:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(12, 2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(640, 20);
+            this.comboBox1.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 638);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.okiniiri);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.FavoriteBt);
             this.Controls.Add(this.webView21);
             this.Controls.Add(this.MainNews);
             this.Controls.Add(this.TikiNews);
@@ -201,7 +237,6 @@
             this.Controls.Add(this.KokunaiNews);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
-            this.Controls.Add(this.tbRssUrl);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
@@ -211,8 +246,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbRssUrl;
         private System.Windows.Forms.Button btGet;
         private System.Windows.Forms.ListBox lbRssTitle;
         private System.Windows.Forms.RadioButton KokunaiNews;
@@ -225,6 +258,10 @@
         private System.Windows.Forms.RadioButton TikiNews;
         private System.Windows.Forms.RadioButton MainNews;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
+        private System.Windows.Forms.Button FavoriteBt;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label okiniiri;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

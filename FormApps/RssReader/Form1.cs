@@ -8,20 +8,33 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Markup;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RssReader {
 
     public partial class Form1 : Form {
         List<ItemData> items;
+        List<ItemData> datas;
 
         public Form1() {
             InitializeComponent();
+            InitializeWebView2();
         }
 
-        private void btGet_Click(object sender, EventArgs e) {
+        private async void InitializeWebView2() {
+            await webView21.EnsureCoreWebView2Async(); // WebView2 の初期化を待機
+        }
 
-            if (string.IsNullOrWhiteSpace(tbRssUrl.Text) || !Uri.IsWellFormedUriString(tbRssUrl.Text, UriKind.Absolute)) {
+            private void btGet_Click(object sender, EventArgs e) {
+
+            var data = datas.FirstOrDefault(n => n.Title == comboBox1.Text).Link;
+
+            
+
+
+            if (string.IsNullOrWhiteSpace(comboBox1.Text) || !Uri.IsWellFormedUriString(comboBox1.Text, UriKind.Absolute)) {
                 MessageBox.Show("正しいURLを入力してください。", "エラー",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -29,7 +42,7 @@ namespace RssReader {
 
 
             using (var wc = new WebClient()) {
-                var url = wc.OpenRead(tbRssUrl.Text);
+                var url = wc.OpenRead(comboBox1.Text);
                 var xdoc = XDocument.Load(url);
 
                 items = xdoc.Root.Descendants("item")
@@ -220,6 +233,24 @@ namespace RssReader {
                 }
             }
         }
+       
+        private void lbRssTitle_SelectedIndexChanged_1(object sender, EventArgs e) {
+            if (lbRssTitle.SelectedIndex >= 0 && items != null) {
+                var selectedItem = items[lbRssTitle.SelectedIndex];
+                webView21.CoreWebView2.Navigate(selectedItem.Link);
+            }
+        }
+
+        private void FavoriteBt_Click(object sender, EventArgs e) {
+            var data = new ItemData {
+                Title = textBox1.Text,
+                Link = comboBox1.Text,
+            };
+            comboBox1.Items.Add(data.Title);
+            datas.Add(data);
+
+        }
+
     }
 
 
