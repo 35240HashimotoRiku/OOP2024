@@ -28,35 +28,61 @@ namespace RssReader {
         }
 
             private void btGet_Click(object sender, EventArgs e) {
+            try {
+                var data = datas.FirstOrDefault(n => n.Title == comboBox1.Text);
 
-            var data = datas.FirstOrDefault(n => n.Title == comboBox1.Text).Link;
+                if (string.IsNullOrWhiteSpace(comboBox1.Text) || !Uri.IsWellFormedUriString(comboBox1.Text, UriKind.Absolute)) {
+                    MessageBox.Show("正しいURLを入力してください。", "エラー",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }//エラーメッセージの表示
+
+                if (data.Title == comboBox1.Text) {
+                    using (var wc = new WebClient()) {
+                        var url = wc.OpenRead(data.Link);
+                        var xdoc = XDocument.Load(url);
+
+                        items = xdoc.Root.Descendants("item")
+                                    .Select(item => new ItemData {
+                                        Title = item.Element("title").Value,
+                                        Link = item.Element("link").Value,
+                                    }).ToList();
+
+                        lbRssTitle.Items.Clear();//リストボックス削除
+
+                        foreach (var item in items) {
+                            lbRssTitle.Items.Add(item.Title);
+                        }
+                    }
+                } else {
+                    using (var wc = new WebClient()) {
+                        var url = wc.OpenRead(comboBox1.Text);
+                        var xdoc = XDocument.Load(url);
+
+                        items = xdoc.Root.Descendants("item")
+                                    .Select(item => new ItemData {
+                                        Title = item.Element("title").Value,
+                                        Link = item.Element("link").Value,
+                                    }).ToList();
+
+                        lbRssTitle.Items.Clear();//リストボックス削除
+
+                        foreach (var item in items) {
+                            lbRssTitle.Items.Add(item.Title);
+                        }
+                    }
+                }
+            }
+            catch (Exception) {
+
+            }
+            
+
 
             
 
 
-            if (string.IsNullOrWhiteSpace(comboBox1.Text) || !Uri.IsWellFormedUriString(comboBox1.Text, UriKind.Absolute)) {
-                MessageBox.Show("正しいURLを入力してください。", "エラー",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }//エラーメッセージの表示
-
-
-            using (var wc = new WebClient()) {
-                var url = wc.OpenRead(comboBox1.Text);
-                var xdoc = XDocument.Load(url);
-
-                items = xdoc.Root.Descendants("item")
-                            .Select(item => new ItemData {
-                                Title = item.Element("title").Value,
-                                Link = item.Element("link").Value,
-                            }).ToList();
-
-                lbRssTitle.Items.Clear();//リストボックス削除
-
-                foreach (var item in items) {
-                    lbRssTitle.Items.Add(item.Title);
-                }
-            }
+            
         }
 
         //  private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
@@ -242,14 +268,21 @@ namespace RssReader {
         }
 
         private void FavoriteBt_Click(object sender, EventArgs e) {
-            var data = new ItemData {
-                Title = textBox1.Text,
-                Link = comboBox1.Text,
-            };
-            comboBox1.Items.Add(data.Title);
-            datas.Add(data);
+            try {
+                var data = new ItemData {
+                    Title = textBox1.Text,
+                    Link = comboBox1.Text,//ラジオボタンのタイトルを関連づける
+                };
+                comboBox1.Items.Add(data.Title);
+                datas.Add(data);
+            }
+            catch (Exception) {
+
+            }
+           
 
         }
+
 
     }
 

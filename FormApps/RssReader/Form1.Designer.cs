@@ -161,7 +161,7 @@
             // MainNews
             // 
             this.MainNews.AutoSize = true;
-            this.MainNews.Location = new System.Drawing.Point(569, 35);
+            this.MainNews.Location = new System.Drawing.Point(569, 38);
             this.MainNews.Name = "MainNews";
             this.MainNews.Size = new System.Drawing.Size(83, 16);
             this.MainNews.TabIndex = 11;
