@@ -16,7 +16,7 @@ namespace RssReader {
 
     public partial class Form1 : Form {
         List<ItemData> items;
-        List<ItemData> datas;
+        List<ItemData> datas = new List<ItemData>();
 
         public Form1() {
             InitializeComponent();
@@ -31,11 +31,11 @@ namespace RssReader {
             try {
                 var data = datas.FirstOrDefault(n => n.Title == comboBox1.Text);
 
-                if (string.IsNullOrWhiteSpace(comboBox1.Text) || !Uri.IsWellFormedUriString(comboBox1.Text, UriKind.Absolute)) {
-                    MessageBox.Show("正しいURLを入力してください。", "エラー",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }//エラーメッセージの表示
+           //    if (string.IsNullOrWhiteSpace(comboBox1.Text) || !Uri.IsWellFormedUriString(comboBox1.Text, UriKind.Absolute)) {
+           //        MessageBox.Show("正しいURLを入力してください。", "エラー",
+           //                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+           //        return;
+           //    }//エラーメッセージの表示
 
                 if (data.Title == comboBox1.Text) {
                     using (var wc = new WebClient()) {
@@ -269,9 +269,17 @@ namespace RssReader {
 
         private void FavoriteBt_Click(object sender, EventArgs e) {
             try {
+                var rbTitle = "";
+
+                foreach (RadioButton rb in groupBox1.Controls.OfType<RadioButton>()) {
+                    if (rb.Checked) {
+                        rbTitle = rb.Text;
+                    }
+                }
+
                 var data = new ItemData {
                     Title = textBox1.Text,
-                    Link = comboBox1.Text,//ラジオボタンのタイトルを関連づける
+                    Link = rbTitle//ラジオボタンのタイトルを関連づける
                 };
                 comboBox1.Items.Add(data.Title);
                 datas.Add(data);

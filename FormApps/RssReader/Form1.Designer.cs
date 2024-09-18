@@ -39,7 +39,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.okiniiri = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btGet
@@ -65,7 +67,7 @@
             // KokunaiNews
             // 
             this.KokunaiNews.AutoSize = true;
-            this.KokunaiNews.Location = new System.Drawing.Point(686, 38);
+            this.KokunaiNews.Location = new System.Drawing.Point(134, 28);
             this.KokunaiNews.Name = "KokunaiNews";
             this.KokunaiNews.Size = new System.Drawing.Size(83, 16);
             this.KokunaiNews.TabIndex = 3;
@@ -77,7 +79,7 @@
             // KokusaiNews
             // 
             this.KokusaiNews.AutoSize = true;
-            this.KokusaiNews.Location = new System.Drawing.Point(814, 38);
+            this.KokusaiNews.Location = new System.Drawing.Point(264, 28);
             this.KokusaiNews.Name = "KokusaiNews";
             this.KokusaiNews.Size = new System.Drawing.Size(83, 16);
             this.KokusaiNews.TabIndex = 4;
@@ -89,7 +91,7 @@
             // KeizaiNews
             // 
             this.KeizaiNews.AutoSize = true;
-            this.KeizaiNews.Location = new System.Drawing.Point(569, 79);
+            this.KeizaiNews.Location = new System.Drawing.Point(25, 80);
             this.KeizaiNews.Name = "KeizaiNews";
             this.KeizaiNews.Size = new System.Drawing.Size(83, 16);
             this.KeizaiNews.TabIndex = 5;
@@ -101,7 +103,7 @@
             // EntameNews
             // 
             this.EntameNews.AutoSize = true;
-            this.EntameNews.Location = new System.Drawing.Point(686, 79);
+            this.EntameNews.Location = new System.Drawing.Point(134, 80);
             this.EntameNews.Name = "EntameNews";
             this.EntameNews.Size = new System.Drawing.Size(93, 16);
             this.EntameNews.TabIndex = 6;
@@ -113,7 +115,7 @@
             // SportsNews
             // 
             this.SportsNews.AutoSize = true;
-            this.SportsNews.Location = new System.Drawing.Point(814, 79);
+            this.SportsNews.Location = new System.Drawing.Point(264, 80);
             this.SportsNews.Name = "SportsNews";
             this.SportsNews.Size = new System.Drawing.Size(97, 16);
             this.SportsNews.TabIndex = 7;
@@ -125,7 +127,7 @@
             // ItNews
             // 
             this.ItNews.AutoSize = true;
-            this.ItNews.Location = new System.Drawing.Point(569, 129);
+            this.ItNews.Location = new System.Drawing.Point(25, 129);
             this.ItNews.Name = "ItNews";
             this.ItNews.Size = new System.Drawing.Size(69, 16);
             this.ItNews.TabIndex = 8;
@@ -137,7 +139,7 @@
             // KagakuNews
             // 
             this.KagakuNews.AutoSize = true;
-            this.KagakuNews.Location = new System.Drawing.Point(686, 129);
+            this.KagakuNews.Location = new System.Drawing.Point(134, 129);
             this.KagakuNews.Name = "KagakuNews";
             this.KagakuNews.Size = new System.Drawing.Size(83, 16);
             this.KagakuNews.TabIndex = 9;
@@ -149,7 +151,7 @@
             // TikiNews
             // 
             this.TikiNews.AutoSize = true;
-            this.TikiNews.Location = new System.Drawing.Point(814, 129);
+            this.TikiNews.Location = new System.Drawing.Point(264, 129);
             this.TikiNews.Name = "TikiNews";
             this.TikiNews.Size = new System.Drawing.Size(83, 16);
             this.TikiNews.TabIndex = 10;
@@ -161,7 +163,7 @@
             // MainNews
             // 
             this.MainNews.AutoSize = true;
-            this.MainNews.Location = new System.Drawing.Point(569, 38);
+            this.MainNews.Location = new System.Drawing.Point(25, 28);
             this.MainNews.Name = "MainNews";
             this.MainNews.Size = new System.Drawing.Size(83, 16);
             this.MainNews.TabIndex = 11;
@@ -216,30 +218,42 @@
             this.comboBox1.Size = new System.Drawing.Size(640, 20);
             this.comboBox1.TabIndex = 19;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.MainNews);
+            this.groupBox1.Controls.Add(this.KeizaiNews);
+            this.groupBox1.Controls.Add(this.ItNews);
+            this.groupBox1.Controls.Add(this.EntameNews);
+            this.groupBox1.Controls.Add(this.KokunaiNews);
+            this.groupBox1.Controls.Add(this.KagakuNews);
+            this.groupBox1.Controls.Add(this.KokusaiNews);
+            this.groupBox1.Controls.Add(this.SportsNews);
+            this.groupBox1.Controls.Add(this.TikiNews);
+            this.groupBox1.Location = new System.Drawing.Point(562, 28);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(369, 153);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 638);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.okiniiri);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.FavoriteBt);
             this.Controls.Add(this.webView21);
-            this.Controls.Add(this.MainNews);
-            this.Controls.Add(this.TikiNews);
-            this.Controls.Add(this.KagakuNews);
-            this.Controls.Add(this.ItNews);
-            this.Controls.Add(this.SportsNews);
-            this.Controls.Add(this.EntameNews);
-            this.Controls.Add(this.KeizaiNews);
-            this.Controls.Add(this.KokusaiNews);
-            this.Controls.Add(this.KokunaiNews);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,6 +276,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label okiniiri;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
