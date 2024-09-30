@@ -56,6 +56,7 @@
             // 
             // lbRssTitle
             // 
+            this.lbRssTitle.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 12;
             this.lbRssTitle.Location = new System.Drawing.Point(12, 181);
@@ -176,7 +177,7 @@
             // 
             this.webView21.AllowExternalDrop = true;
             this.webView21.CreationProperties = null;
-            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView21.DefaultBackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.webView21.Location = new System.Drawing.Point(388, 187);
             this.webView21.Name = "webView21";
             this.webView21.Size = new System.Drawing.Size(560, 431);
@@ -220,6 +221,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox1.Controls.Add(this.MainNews);
             this.groupBox1.Controls.Add(this.KeizaiNews);
             this.groupBox1.Controls.Add(this.ItNews);
@@ -234,12 +236,12 @@
             this.groupBox1.Size = new System.Drawing.Size(369, 153);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(962, 638);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.comboBox1);

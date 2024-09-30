@@ -1,0 +1,15 @@
+Exercise1_2();
+Console.WriteLine();
+Exercise1_3();
+Console.WriteLine();
+Exercise1_4();
+Console.WriteLine();
+Exercise1_5();
+Console.WriteLine();
+Exercise1_6();
+Console.WriteLine();
+Exercise1_7();
+Console.WriteLine();
+Exercise1_8();
+
+Console.ReadLine();

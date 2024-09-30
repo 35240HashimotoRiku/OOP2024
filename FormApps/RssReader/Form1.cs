@@ -27,15 +27,15 @@ namespace RssReader {
             await webView21.EnsureCoreWebView2Async(); // WebView2 の初期化を待機
         }
 
-            private void btGet_Click(object sender, EventArgs e) {
+        private void btGet_Click(object sender, EventArgs e) {
             try {
                 var data = datas.FirstOrDefault(n => n.Title == comboBox1.Text);
 
-           //    if (string.IsNullOrWhiteSpace(comboBox1.Text) || !Uri.IsWellFormedUriString(comboBox1.Text, UriKind.Absolute)) {
-           //        MessageBox.Show("正しいURLを入力してください。", "エラー",
-           //                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-           //        return;
-           //    }//エラーメッセージの表示
+                //    if (string.IsNullOrWhiteSpace(comboBox1.Text) || !Uri.IsWellFormedUriString(comboBox1.Text, UriKind.Absolute)) {
+                //        MessageBox.Show("正しいURLを入力してください。", "エラー",
+                //                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //        return;
+                //    }//エラーメッセージの表示
 
                 if (data.Title == comboBox1.Text) {
                     using (var wc = new WebClient()) {
@@ -76,13 +76,13 @@ namespace RssReader {
             catch (Exception) {
 
             }
-            
 
 
-            
 
 
-            
+
+
+
         }
 
         //  private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
@@ -259,7 +259,7 @@ namespace RssReader {
                 }
             }
         }
-       
+
         private void lbRssTitle_SelectedIndexChanged_1(object sender, EventArgs e) {
             if (lbRssTitle.SelectedIndex >= 0 && items != null) {
                 var selectedItem = items[lbRssTitle.SelectedIndex];
@@ -287,10 +287,9 @@ namespace RssReader {
             catch (Exception) {
 
             }
-           
+
 
         }
-
 
     }
 
