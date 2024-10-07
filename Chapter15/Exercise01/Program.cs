@@ -67,12 +67,49 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_5() {
+            var query = Library.Books
+                        .Where(b => b.PublishedYear == 2016)
+                        .Join(Library.Categories,//結合する２番目のシーケンス
+                                 book => book.CategoryId,//対象シーケンスの結合キー
+                                 Category => Category.Id,//２番目のシーケンスキー
+                        (book, category) => category.Name)
+                        .Distinct();
+            foreach (var name in query) {
+                Console.WriteLine(name);
+            }
         }
 
         private static void Exercise1_6() {
+            var query = Library.Books
+                        .Where(b => b.PublishedYear == 2016)
+                        .Join(Library.Categories,//結合する２番目のシーケンス
+                                 book => book.CategoryId,//対象シーケンスの結合キー
+                                 Category => Category.Id,//２番目のシーケンスキー
+                        (book, category) => new {
+                            book.Title,
+                            CategoryName = category.Name
+                        })
+                        .GroupBy(x => x.CategoryName)
+                        .OrderBy(x => x.Key);
+            foreach(var group in query) {
+                Console.WriteLine("#{0}",group.Key);
+                foreach (var item in group) {
+                    Console.WriteLine("  {0}", item.Title);
+                }
+            }
         }
 
         private static void Exercise1_7() {
+            var categoriesId = Library.Categories.Single(c => c.Name == "Development").Id;
+            var query = Library.Books.Where(b => b.CategoryId == categoriesId)
+                                     .GroupBy(b => b.PublishedYear)
+                                     .OrderBy(b => b.Key);
+            foreach (var group in query) {
+                Console.WriteLine("#{0}年", group.Key);
+                foreach (var item in group) {
+                    Console.WriteLine("  {0}", item.Title);
+                }
+            }
         }
 
         private static void Exercise1_8() {
