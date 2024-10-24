@@ -46,8 +46,8 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="STOCK" FontSize="16" Grid.Column="2" Content="STOCK"  Margin="10"  />
-            <ListBox Grid.Row="1" Margin="10"/>
+            <Button x:Name="STOCK" FontSize="16" Grid.Column="2" Content="STOCK"  Margin="10" Click="STOCK_Click"  />
+            <ListBox x:Name="ListBox" Grid.Row="1" Margin="10" SelectionChanged="ListBox_SelectionChanged" FontFamily="BIZ UDGothic"/>
         </Grid>
         
 

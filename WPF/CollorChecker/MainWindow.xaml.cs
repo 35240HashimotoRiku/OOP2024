@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,16 +22,26 @@ namespace CollorChecker {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+          
         }
+        MyColor currentColor = new MyColor();
+        private List<MyColor> stockColors = new List<MyColor>();
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-            int rvalue = (int) rSlider.Value;
-            int gvalue = (int) gSlider.Value;
-            int bvalue = (int) bSlider.Value;
-            colorArea.Background = new SolidColorBrush(Color.FromRgb((byte)rvalue, (byte)gvalue, (byte)bvalue));
-
+            // int rvalue = (int) rSlider.Value;
+            // int gvalue = (int) gSlider.Value;
+            // int bvalue = (int) bSlider.Value;
+            // colorArea.Background = new SolidColorBrush(Color.FromRgb((byte)rvalue, (byte)gvalue, (byte)bvalue));
+            currentColor.Color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+            colorArea.Background = new SolidColorBrush(currentColor.Color);
         }
 
-        
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+           
+        }
+
+        private void STOCK_Click(object sender, RoutedEventArgs e) {
+            ListBox.Items.Insert(0, currentColor);
+        }
     }
 }
