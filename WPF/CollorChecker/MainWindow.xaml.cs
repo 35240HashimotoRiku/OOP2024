@@ -20,13 +20,18 @@ namespace CollorChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
+        MyColor currentColor = new MyColor(); //現在設定している色情報
+
         public MainWindow() {
             InitializeComponent();
-          
+           //αチャンネルの初期値を設定（起動時すぐにストックボタンが押された場合の対応）
+           // currentColor.Color = Color.FromArgb(255,0,0,0);
         }
-        MyColor currentColor = new MyColor();
-        private List<MyColor> stockColors = new List<MyColor>();
+       //MyColor currentColor = new MyColor();
 
+       // private List<MyColor> stockColors = new List<MyColor>();
+
+        //スライドを動かすと呼ばれるイベントハンドラ
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             // int rvalue = (int) rSlider.Value;
             // int gvalue = (int) gSlider.Value;
@@ -36,12 +41,25 @@ namespace CollorChecker {
             colorArea.Background = new SolidColorBrush(currentColor.Color);
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-           
-        }
-
         private void STOCK_Click(object sender, RoutedEventArgs e) {
             ListBox.Items.Insert(0, currentColor);
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+          // colorArea.Background = new SolidColorBrush((MyColor)ListBox.Items[ListBox.SelectedIndex]);
+          // rSlider.Value = ((MyColor)ListBox.Items[ListBox.SelectedIndex]).Color.R;
+          // gSlider.Value = ((MyColor)ListBox.Items[ListBox.SelectedIndex]).Color.G;
+          // bSlider.Value = ((MyColor)ListBox.Items[ListBox.SelectedIndex]).Color.B;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
+
+        private void StackPanel_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e) {
+            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+            var color = mycolor.Color;
+            var name = mycolor.Name;
         }
     }
 }

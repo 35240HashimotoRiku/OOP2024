@@ -29,17 +29,30 @@
 
             <TextBlock Grid.Column="0" Text="R" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Slider Grid.Column="1" x:Name="rSlider" Maximum="255" Grid.Row="0"  VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
-            <TextBox Grid.Column="2" VerticalAlignment="Center" Text="{Binding ElementName=rSlider, Path=Value, Mode=TwoWay}"/>
+            <TextBox Grid.Column="2" VerticalAlignment="Center"   Text="{Binding ElementName=rSlider, Path=Value, Mode=TwoWay,StringFormat={}{0:0}}"/>
 
             <TextBlock Grid.Column="0"  Grid.Row="1" Text="G" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Slider Grid.Column="1" x:Name="gSlider" Maximum="255" Grid.Row="1"  VerticalAlignment="Center" ValueChanged="Slider_ValueChanged" />
-            <TextBox Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Text="{Binding ElementName=gSlider, Path=Value, Mode=TwoWay}"/>
+            <TextBox Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Text="{Binding ElementName=gSlider, Path=Value, Mode=TwoWay,StringFormat={}{0:0}}"/>
 
             <TextBlock Grid.Column="0"  Grid.Row="2" Text="B" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Slider Grid.Column="1" x:Name="bSlider" Maximum="255" Grid.Row="2"  VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
-            <TextBox Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Text="{Binding ElementName=bSlider, Path=Value, Mode=TwoWay}"/>
+            <TextBox Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Text="{Binding ElementName=bSlider, Path=Value, Mode=TwoWay,StringFormat={}{0:0}}"/>
 
-            <ComboBox Grid.Column="1" Grid.Row="3" Margin="10"/>
+            <ComboBox Grid.Column="1" Grid.Row="3" Margin="10" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" DataContextChanged="StackPanel_DataContextChanged">
+                            <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="Black"  >
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding Color}"/>
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
