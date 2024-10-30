@@ -39,10 +39,10 @@
             <Slider Grid.Column="1" x:Name="bSlider" Maximum="255" Grid.Row="2"  VerticalAlignment="Center" ValueChanged="Slider_ValueChanged"/>
             <TextBox Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Text="{Binding ElementName=bSlider, Path=Value, Mode=TwoWay,StringFormat={}{0:0}}"/>
 
-            <ComboBox Grid.Column="1" Grid.Row="3" Margin="10" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBox x:Name="ColorSelctComboBox" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Grid.Column="1" Grid.Row="3" Margin="10" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" DataContextChanged="StackPanel_DataContextChanged">
+                        <StackPanel Orientation="Horizontal" >
                             <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="Black"  >
                                 <Border.Background>
                                     <SolidColorBrush Color="{Binding Color}"/>
@@ -54,15 +54,17 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="3">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="STOCK" FontSize="16" Grid.Column="2" Content="STOCK"  Margin="10" Click="STOCK_Click"  />
-            <ListBox x:Name="ListBox" Grid.Row="1" Margin="10" SelectionChanged="ListBox_SelectionChanged" FontFamily="BIZ UDGothic"/>
+            <Button x:Name="STOCK" FontSize="16" Grid.Column="2" Background="Aqua" Content="STOCK"  Margin="10" Click="STOCK_Click"  />
+            <ListBox x:Name="StockList" Grid.Row="1" Margin="10,10,10,0" Background="Aqua" SelectionChanged="StockList_SelectionChanged" FontFamily="BIZ UDGothic" Height="190" VerticalAlignment="Top"/>
+            <Button x:Name="delete" FontSize="10" Grid.Row="2" Margin="10" Background="Red" Content="Delete"  Click="DELETE_Click"/>
         </Grid>
-        
+            
 
     </Grid>
 </Window>
