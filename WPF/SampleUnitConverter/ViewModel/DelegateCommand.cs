@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace SampleUnitConverter {
+namespace SampleWeightUnitConverter {
     class DelegateCommand : ICommand {
         private readonly Action execute;
         private readonly Func<bool> canExecute;
