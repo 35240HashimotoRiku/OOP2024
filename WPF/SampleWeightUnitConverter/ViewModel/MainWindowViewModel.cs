@@ -5,46 +5,50 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace SampleUnitConverter {
+namespace SampleWeightUnitConverter {
     public class MainWindowViewModel : ViewModel {
-        private double metricValue, imperialValue;
+        private double gramValue, poundValue;
 
         //▲ボタンで呼ばれるコマンド
-        public ICommand ImperialUnitToMetric { get; private set; }
+        public ICommand PoundUnitToGram { get; private set; }
         //▼ボタンで呼ばれるコマンド
-        public ICommand MetricToImperialUnit { get; private set; }
+        public ICommand GramToPoundUnit { get; private set; }
 
         //上のComboBoxで選択されている値
-        public MetricUnit CurrentMetricUnit { get; set; }
+        public GramUnit CurrentGramUnit { get; set; }
         //下のComboBoxで選択されている値
-        public ImperialUnit CurrentImperialUnit { get; set; }
+        public PoundUnit CurrentPoundUnit { get; set; }
 
-        public double MetricValue {
-            get { return metricValue; }
+
+        //Metric→Gram
+
+
+        public double GramValue {
+            get { return gramValue; }
             set {
-                metricValue = value;
+                gramValue = value;
                 OnPropertyChanged();    //値が変更されたら通知
             }
         }
 
-        public double ImperialValue {
-            get { return imperialValue; }
+        public double PoundValue {
+            get { return poundValue; }
             set {
-                imperialValue = value;
+                poundValue = value;
                 OnPropertyChanged();    //値が変更されたら通知
             }
         }
 
         //コンストラクタ
         public MainWindowViewModel() {
-            CurrentMetricUnit = MetricUnit.Units.First();
-            CurrentImperialUnit = ImperialUnit.Units.First();
+            CurrentGramUnit = GramUnit.Units.First();
+            CurrentPoundUnit = PoundUnit.Units.First();
 
-            MetricToImperialUnit = new DelegateCommand(() =>
-                            ImperialValue = CurrentImperialUnit.FromMetricUnit(CurrentMetricUnit, MetricValue));
+            GramToPoundUnit = new DelegateCommand(() =>
+                            PoundValue = CurrentPoundUnit.FromGramUnit(CurrentGramUnit, GramValue));
 
-            ImperialUnitToMetric = new DelegateCommand(() =>
-                            MetricValue = CurrentMetricUnit.FromImperialUnit(CurrentImperialUnit, ImperialValue));
+            PoundUnitToGram = new DelegateCommand(() =>
+                            GramValue = CurrentGramUnit.FromPoundUnit(CurrentPoundUnit, PoundValue));
         }
 
     }
