@@ -61,6 +61,7 @@ namespace CustomerApp {
                 connection.CreateTable<Customer>();
                 _customers = connection.Table<Customer>().ToList();
                 CustomerListView.ItemsSource = _customers;
+
             }
         }
 
@@ -94,7 +95,7 @@ namespace CustomerApp {
         }
 
         // 顧客が選択された時、TextBoxに顧客情報を表示
-        private void CustomerListView_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) {
+        private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var selectedCustomer = CustomerListView.SelectedItem as Customer;
             if (selectedCustomer != null) {
                 // 顧客情報をTextBoxに表示
@@ -108,5 +109,7 @@ namespace CustomerApp {
                 AddressTextBox.Clear();
             }
         }
+
+       
     }
 }
