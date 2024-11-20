@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="300">
+        Title="MainWindow" Height="500" Width="300" Loaded="Window_Loaded">
     <Grid>
         <StackPanel Margin="10">
             <Grid>
@@ -19,15 +19,17 @@
                     <ColumnDefinition Width="8*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="名前" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="NameTextBox"  Grid.Row="0" Grid.Column="1" Margin="2"/>
-                <TextBlock Text="電話番号" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center"/>
-                <TextBox x:Name="PhoneTextBox"  Grid.Row="1" Grid.Column="1"  Margin="2"/>
-                <TextBlock Text="住所" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center"/>
-                <TextBox x:Name="AddressTextBox"  Grid.Row="2" Grid.Column="1"  Margin="2"/>
+                <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Margin="2"/>
+                <TextBlock Text="電話番号" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="PhoneTextBox" Grid.Row="1" Grid.Column="1" Margin="2"/>
+                <TextBlock Text="住所" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="AddressTextBox" Grid.Row="2" Grid.Column="1" Margin="2"/>
             </Grid>
-            <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click"  Margin="2"/>
-            <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click"  Margin="2"/>
+            <Button Content="Save" x:Name="SaveButton" Click="SaveButton_Click" Margin="2"/>
+            <Button Content="Delete" x:Name="DeleteButton" Click="DeleteButton_Click" Margin="2"/>
             <Button Content="Update" x:Name="UpdateButton" Click="UpdateButton_Click" Margin="2"/>
+            <Button Content="OpenFileDialog" x:Name="OpenFileDialog" Click="OpenFileDialog_Click" Margin="2"/>
+
 
             <TextBox x:Name="SearchTextBox" FontSize="20" TextChanged="SearchTextBox_TextChanged"/>
 
@@ -35,8 +37,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <!-- 画像表示用のImageコントロールに名前を付ける -->
-                            <Image x:Name="Image" Width="100" Height="100"/>
+                            <Image Source="{Binding ImagePath}" Width="100" Height="100"/>
                             <TextBlock Text="{Binding Id}"/>
                             <TextBlock Text="{Binding Name}" FontSize="20"/>
                             <TextBlock Text="{Binding Phone}" Foreground="Blue"/>

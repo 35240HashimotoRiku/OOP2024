@@ -1,4 +1,5 @@
 ﻿using CustomerApp.Objects;
+using Microsoft.Win32;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -15,80 +16,62 @@ namespace CustomerApp {
 
         public MainWindow() {
             InitializeComponent();
-            // ウィンドウが読み込まれたときに画像を挿入
-            InsertImage1();
-            ReadDatabase(); // データベースを読み込んでリスト表示
-        }
 
-        // 画像①を埋め込む
-        private void InsertImage1() {
-            // 画像リソースのパス（プロジェクト名.名前空間.画像ファイル名）
-            string path1 = "CustomerApp.Resources.image1.jpg"; //画像ファイル先を指定
-
-            BitmapImage bmpImg = new BitmapImage();
-            bmpImg.BeginInit();
-
-            // アセンブリを取得
-            Assembly assembly = Assembly.GetExecutingAssembly();
-
-            // 埋め込まれた画像リソースのストリームを取得
-            Stream stream = assembly.GetManifestResourceStream(path1);
-            if (stream != null) {
-                bmpImg.StreamSource = stream;
-                bmpImg.EndInit();
-
-                // XAMLのImageコントロールに画像をセット
-                
-            } else {
-                MessageBox.Show("画像リソースが見つかりません。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         // 新しい顧客情報をデータベースに追加
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
+            // TextBoxから新しい顧客情報を取得
             var newCustomer = new Customer() {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
-                Address = AddressTextBox.Text
+                Address = AddressTextBox.Text,
+                ImagePath = "Resources/画像.jpg" // 固定の画像パスを指定
             };
 
+            // 顧客情報をデータベースに保存
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Insert(newCustomer);
             }
 
+            // 顧客リストを再読込
             ReadDatabase();
         }
 
-        // 顧客情報を更新
+        // 選択された顧客情報を更新
         private void UpdateButton_Click(object sender, RoutedEventArgs e) {
             var selectedCustomer = CustomerListView.SelectedItem as Customer;
             if (selectedCustomer != null) {
+                // TextBoxの内容で顧客情報を更新
                 selectedCustomer.Name = NameTextBox.Text;
                 selectedCustomer.Phone = PhoneTextBox.Text;
                 selectedCustomer.Address = AddressTextBox.Text;
 
+                // データベースに更新内容を反映
                 using (var connection = new SQLiteConnection(App.databasePass)) {
                     connection.CreateTable<Customer>();
                     connection.Update(selectedCustomer);
                 }
 
+                // 顧客リストを再読込
                 ReadDatabase();
             } else {
                 MessageBox.Show("更新する顧客を選択してください。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        // 顧客リストをデータベースから読み込む
+        // 顧客リストをデータベースから読み込んで表示
         private void ReadDatabase() {
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 _customers = connection.Table<Customer>().ToList();
                 CustomerListView.ItemsSource = _customers;
+
             }
         }
 
-        // 顧客情報を検索
+        // 顧客リストを検索してフィルタリング
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
             var filterList = _customers.Where(x => x.Name.Contains(SearchTextBox.Text)).ToList();
             CustomerListView.ItemsSource = filterList;
@@ -102,25 +85,45 @@ namespace CustomerApp {
                 return;
             }
 
+            // 顧客情報をデータベースから削除
             using (var connection = new SQLiteConnection(App.databasePass)) {
                 connection.CreateTable<Customer>();
                 connection.Delete(item);
             }
 
+            // 顧客リストを再読込
             ReadDatabase();
         }
 
-        // 顧客が選択された時にTextBoxに顧客情報を表示
+        // ウィンドウが読み込まれた時に顧客リストを表示
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            ReadDatabase();
+        }
+
+        // 顧客が選択された時、TextBoxに顧客情報を表示
         private void CustomerListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var selectedCustomer = CustomerListView.SelectedItem as Customer;
             if (selectedCustomer != null) {
+                // 顧客情報をTextBoxに表示
                 NameTextBox.Text = selectedCustomer.Name;
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
             } else {
+                // 顧客が選択されていない場合、TextBoxをクリア
                 NameTextBox.Clear();
                 PhoneTextBox.Clear();
                 AddressTextBox.Clear();
+            }
+        }
+
+        private void OpenFileDialog_Click(object sender, RoutedEventArgs e) {
+
+            var ofd = new OpenFileDialog();
+            ofd.Filter = "CSVファイル（*.csv）|*.csv";
+
+            if (ofd.ShowDialog() == true) {
+                MessageBox.Show(ofd.FileName);
+
             }
         }
     }
