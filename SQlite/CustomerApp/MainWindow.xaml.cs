@@ -135,7 +135,7 @@ namespace CustomerApp {
         }
 
         private void ClearImageButton_Click(object sender, RoutedEventArgs e) {
-
+            PreviewImage = null;
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e) {
