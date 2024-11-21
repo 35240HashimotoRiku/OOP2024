@@ -116,28 +116,15 @@ namespace CustomerApp {
             }
         }
 
-        private void OpenFileDialog_Click(object sender, RoutedEventArgs e) {
-
-            var ofd = new OpenFileDialog();
-
-            if (ofd.ShowDialog() == true) {
-                MessageBox.Show(ofd.FileName);
-
-            }
-        }
-
-        private void SearchTextBox_TextChanged_1(object sender, TextChangedEventArgs e) {
+            private void ImagePathButton_Click(object sender, RoutedEventArgs e) {
 
         }
 
-        private void ImagePathButton_Click(object sender, RoutedEventArgs e) {
-
-        }
-
+        //画像をクリア
         private void ClearImageButton_Click(object sender, RoutedEventArgs e) {
             PreviewImage = null;
         }
-
+        //オールクリア
         private void ClearButton_Click(object sender, RoutedEventArgs e) {
             NameTextBox.Text = "";
             PhoneTextBox.Text = "";
@@ -145,6 +132,29 @@ namespace CustomerApp {
             PreviewImage = null;
 
 
+        }
+
+
+
+        private void ImagePathButton_Click_2(object sender, RoutedEventArgs e) {
+            OpenFileDialog openFileDialog = new OpenFileDialog {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
+                Title = "画像を選択"
+            };
+
+            if (openFileDialog.ShowDialog() == true) {
+                // 画像パスを取得して、Customerオブジェクトにセット
+                string imagePath = openFileDialog.FileName;
+                PreviewImage.Source = new BitmapImage(new Uri(imagePath));
+
+                // 顧客情報に画像パスをセット
+                var newCustomer = new Customer {
+                    Name = NameTextBox.Text,
+                    Phone = PhoneTextBox.Text,
+                    Address = AddressTextBox.Text,
+                    ImagePath = imagePath // 選択した画像のパスを保存
+                };
+            }
         }
     }
 }
