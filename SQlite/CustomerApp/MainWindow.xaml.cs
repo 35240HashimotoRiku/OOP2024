@@ -119,12 +119,32 @@ namespace CustomerApp {
         private void OpenFileDialog_Click(object sender, RoutedEventArgs e) {
 
             var ofd = new OpenFileDialog();
-            ofd.Filter = "CSVファイル（*.csv）|*.csv";
 
             if (ofd.ShowDialog() == true) {
                 MessageBox.Show(ofd.FileName);
 
             }
+        }
+
+        private void SearchTextBox_TextChanged_1(object sender, TextChangedEventArgs e) {
+
+        }
+
+        private void ImagePathButton_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void ClearImageButton_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e) {
+            NameTextBox.Text = "";
+            PhoneTextBox.Text = "";
+            AddressTextBox.Text = "";
+            PreviewImage = null;
+
+
         }
     }
 }
