@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="300">
+        Title="MainWindow" Height="750" Width="300"
+        Loaded="Window_Loaded_1">
     <Grid>
         <StackPanel Margin="10">
             <Grid>
@@ -29,7 +30,7 @@
                 <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="2">
                     <Button x:Name="ImagePathButton" Content="画像選択" Margin="2" Width="70" Height="42" Click="ImagePathButton_Click_2" Background="PaleGoldenrod"/>
                     <Button x:Name="ClearImageButton" Content="画像クリア" Margin="2,2,10,2" Width="70" Height="42" Click="ClearImageButton_Click" Background="SkyBlue"/>
-                    <Image x:Name="PreviewImage" Width="50" Height="50" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <Image x:Name="ImagePath" Width="50" Height="50"  />
                 </StackPanel>
             </Grid>
 
@@ -67,8 +68,8 @@
                             <StackPanel>
                                 <TextBlock x:Name="Id" Text="{Binding Id}"/>
                                 <TextBlock x:Name="Name" Text="{Binding Name}" FontSize="20"/>
-                                <TextBlock x:Name="Phone" Text="{Binding Phone}" Foreground="Honeydew"/>
-                                <TextBlock x:Name="Address" Text="{Binding Address}" Foreground="Green"/>
+                                <TextBlock x:Name="Phone" Text="{Binding Phone}" Foreground="Blue"/>
+                                <TextBlock x:Name="Address" Text="{Binding Address}" Foreground="Red"/>
                             </StackPanel>
                             <!-- 画像の表示 -->
                             <Image Source="{Binding ImagePath}" Width="75" Height="75" Margin="30,5,5,5"/>

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace CustomerApp {
@@ -19,6 +20,24 @@ namespace CustomerApp {
 
         }
 
+        // 画像byte[]に変換するメソッド
+        public byte[] ConvertImageToByteArray(BitmapImage bitmapImage) {
+
+            // MemoryStreamを作成
+            using (MemoryStream memoryStream = new MemoryStream()) {
+                // BitmapImageの画像をMemoryStreamにエンコード
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder(); // ここではJPEG形式で保存します
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+
+                // MemoryStreamにエンコードされた画像を保存
+                encoder.Save(memoryStream);
+
+                // MemoryStreamをバイト配列に変換
+                return memoryStream.ToArray();
+            }
+        }
+
+
         // 新しい顧客情報をデータベースに追加
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
             // TextBoxから新しい顧客情報を取得
@@ -26,7 +45,7 @@ namespace CustomerApp {
                 Name = NameTextBox.Text,
                 Phone = PhoneTextBox.Text,
                 Address = AddressTextBox.Text,
-                ImagePath = "Resources/画像.jpg" // 固定の画像パスを指定
+                ImagePath = ConvertImageToByteArray((BitmapImage)ImagePath.Source)
             };
 
             // 顧客情報をデータベースに保存
@@ -48,6 +67,13 @@ namespace CustomerApp {
                 selectedCustomer.Phone = PhoneTextBox.Text;
                 selectedCustomer.Address = AddressTextBox.Text;
 
+                // 画像が設定されていれば、画像データを更新
+                if (ImagePath.Source != null) {
+                    BitmapImage bitmapImage = (BitmapImage)ImagePath.Source;
+                    selectedCustomer.ImagePath = ConvertImageToByteArray(bitmapImage);
+                } else {
+                    selectedCustomer.ImagePath = null;
+                }
                 // データベースに更新内容を反映
                 using (var connection = new SQLiteConnection(App.databasePass)) {
                     connection.CreateTable<Customer>();
@@ -60,6 +86,7 @@ namespace CustomerApp {
                 MessageBox.Show("更新する顧客を選択してください。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         // 顧客リストをデータベースから読み込んで表示
         private void ReadDatabase() {
@@ -108,6 +135,7 @@ namespace CustomerApp {
                 NameTextBox.Text = selectedCustomer.Name;
                 PhoneTextBox.Text = selectedCustomer.Phone;
                 AddressTextBox.Text = selectedCustomer.Address;
+                ImagePath.Source = ConvertByteArrayToBitmapImage(selectedCustomer.ImagePath);
             } else {
                 // 顧客が選択されていない場合、TextBoxをクリア
                 NameTextBox.Clear();
@@ -116,22 +144,16 @@ namespace CustomerApp {
             }
         }
 
-            private void ImagePathButton_Click(object sender, RoutedEventArgs e) {
-
-        }
-
         //画像をクリア
         private void ClearImageButton_Click(object sender, RoutedEventArgs e) {
-            PreviewImage = null;
+            ImagePath.Source = null;
         }
         //オールクリア
         private void ClearButton_Click(object sender, RoutedEventArgs e) {
             NameTextBox.Text = "";
             PhoneTextBox.Text = "";
             AddressTextBox.Text = "";
-            PreviewImage = null;
-
-
+            ImagePath.Source = null;
         }
 
 
@@ -145,16 +167,29 @@ namespace CustomerApp {
             if (openFileDialog.ShowDialog() == true) {
                 // 画像パスを取得して、Customerオブジェクトにセット
                 string imagePath = openFileDialog.FileName;
-                PreviewImage.Source = new BitmapImage(new Uri(imagePath));
+                ImagePath.Source = new BitmapImage(new Uri(imagePath));
+            };
+        }
+        private void Window_Loaded_1(object sender, RoutedEventArgs e) {
+            ReadDatabase();
+        }
+        public BitmapImage ConvertByteArrayToBitmapImage(byte[] byteArray) {
+            if (byteArray == null || byteArray.Length == 0) {
+                // もし byteArray が null か空であれば、空の画像を返す
+                return new BitmapImage();
+            }
 
-                // 顧客情報に画像パスをセット
-                var newCustomer = new Customer {
-                    Name = NameTextBox.Text,
-                    Phone = PhoneTextBox.Text,
-                    Address = AddressTextBox.Text,
-                    ImagePath = imagePath // 選択した画像のパスを保存
-                };
+            using (MemoryStream memoryStream = new MemoryStream(byteArray)) {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+
+                return bitmapImage;
             }
         }
+
+
     }
 }
