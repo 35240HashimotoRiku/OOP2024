@@ -175,6 +175,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLite", "SQLite", "{A166EF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerApp", "SQlite\CustomerApp\CustomerApp.csproj", "{9EF7DCF0-C16B-475F-A622-6E4032D6F293}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Python", "Python", "{325816AC-6A22-4E7D-94D4-5D2ED174111D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

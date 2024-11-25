@@ -21,9 +21,14 @@ namespace CustomerApp {
         }
 
         // 画像byte[]に変換するメソッド
+        // 画像byte[]に変換するメソッド
+        // 画像byte[]に変換するメソッド
+        // 画像byte[]に変換するメソッド
         public byte[] ConvertImageToByteArray(BitmapImage bitmapImage) {
+            if (bitmapImage == null) {
+                return null; // もしくはデフォルト画像を使いたい場合はここでデフォルト画像を使用
+            }
 
-            // MemoryStreamを作成
             using (MemoryStream memoryStream = new MemoryStream()) {
                 // BitmapImageの画像をMemoryStreamにエンコード
                 JpegBitmapEncoder encoder = new JpegBitmapEncoder(); // ここではJPEG形式で保存します
@@ -36,6 +41,9 @@ namespace CustomerApp {
                 return memoryStream.ToArray();
             }
         }
+
+
+
 
 
         // 新しい顧客情報をデータベースに追加
