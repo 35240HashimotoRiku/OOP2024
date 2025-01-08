@@ -1,0 +1,37 @@
+﻿<Window x:Class="AllergyApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AllergyApplication1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Table" FontSize="16" Grid.Column="1" Grid.Row="1" Background="Aqua" Content="Table"  Margin="10" Click="Table_Click"  />
+        <!--アレルギー一覧表-->
+
+        <Button x:Name="Checker" FontSize="16" Grid.Column="1" Grid.Row="2" Background="Aqua" Content="Checker"  Margin="10" Click="Checker_Click"  />
+        <!--アレルギーチェック表-->
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Drink" FontSize="16" Grid.Column="0" Background="Aqua" Content="Drink"  Margin="10" Click="Drink_Click"  />
+            <!--ドリンク表-->
+            <Button x:Name="Food" FontSize="16" Grid.Column="1" Background="Aqua" Content="Food"  Margin="10" Click="Food_Click"  />
+            <!--フード表-->
+
+        </Grid>
+    </Grid>
+
+</Window>
